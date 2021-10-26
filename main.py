@@ -1,71 +1,22 @@
-#1.Flowchart
-a=int(input())
-b=int(input())
-c=int(input())
-d=[a,b,c]
-d.sort()
-print(d)
-#2 Matrix multiplication
+1#earthquake
+import pandas as pd
 import numpy as np
-M1=np.random.randint(0,50,(10,5))
-print(M1)
-M2=np.random.randint(0,50,(5,10))
-print(M2)
-M3=np.dot(M2, M1)
-print(M3)
-#3 Pascal triangle
-def Pascal_triangle():
-    L=[1]
-    while True:
-        yield L
-        L=[1]+[L[i-1]+L[i] for i in range(1,len(L))]+[1]
+data=pd.read_csv("D:/earthquake/earthquakes-2021-10-23_11-40-03_+0800.tsv",encoding="gbk",sep="\t")
+T1=data.groupby(["Country"])["Deaths"].sum()
+sorted(T1)
+print(T1[0:9])
+mag=data["Mag"]
+time=data["Year"]
+if mag>6:
+ print(time)
+#Wind speed in Shenzhen during the past 10 years
+import pandas as pd
+import numpy as np
+data2=pd.read_csv("C:/Users/ASUS/PycharmProjects/Wind speed in Shenzhen during the past 10 years.csv")
+print(data2.loc[:["DATE",'WIND']])
+#3. Explore a data set
+import pandas as pd
+import numpy as np
+data3=pd.read_csv("C:/Users/ASUS/PycharmProjects/Wind speed in Shenzhen during the past 10 years.csv")
+print(data3.loc[:['DATE','TMP']])
 
-n=0
-for i in Pascal_triangle():
-    print(i)
-    n+=1
-    if n>100:
-     break
-N=0
-for i in Pascal_triangle():
-    print(i)
-    N+=1
-    if N>200:
-      break
-#4 Add or double
-x=int(input())
-count=0
-while x!=1:
-  if x%2==0:
-    x/=2
-  else:
-    x-=1
-  count+=1
-print(count)
-#DynamicProgramming
-from itertools import product
-m=int(input())
-n = 0
-for s in product('+-*/ ', repeat = 8):
- e=""
-
-for i in range(1, 9):
-
- assert(len(s) > 0)
-
-e += '%d' % i
-
-if (s[0] != ' '):
-
- e += s[0]
-
-s = s[1:]
-
-e += '9'
-
-if eval(e) ==m:
-
- n += 1
-
-print('%d#' % n, end = '\t')
-print('%s=m' % e)
